@@ -10,10 +10,13 @@ const cookieParser = require('cookie-parser')
 const multer = require('multer')
 const uploadMiddleware = multer({dest: 'uploads/'})
 const fs = require('fs')
+require('dotenv').config();
+
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'fdahiuho7hkjgr6hkj08hihu4hlksf';
-app.use(cors({credentials:true,origin:'http://localhost:3002'}));
+// app.use(cors({credentials:true,origin:'http://localhost:3000'}));
+app.use(cors({ credentials: true, origin: process.env.BASE_URL }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads',express.static(__dirname + '/uploads'))
